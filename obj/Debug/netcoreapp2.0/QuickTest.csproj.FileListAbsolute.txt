@@ -1,0 +1,10 @@
+/home/linuxoid/DotNetProjects/QuickTest/bin/Debug/netcoreapp2.0/QuickTest.deps.json
+/home/linuxoid/DotNetProjects/QuickTest/bin/Debug/netcoreapp2.0/QuickTest.runtimeconfig.json
+/home/linuxoid/DotNetProjects/QuickTest/bin/Debug/netcoreapp2.0/QuickTest.runtimeconfig.dev.json
+/home/linuxoid/DotNetProjects/QuickTest/bin/Debug/netcoreapp2.0/QuickTest.dll
+/home/linuxoid/DotNetProjects/QuickTest/bin/Debug/netcoreapp2.0/QuickTest.pdb
+/home/linuxoid/DotNetProjects/QuickTest/obj/Debug/netcoreapp2.0/QuickTest.csproj.CoreCompileInputs.cache
+/home/linuxoid/DotNetProjects/QuickTest/obj/Debug/netcoreapp2.0/QuickTest.AssemblyInfoInputs.cache
+/home/linuxoid/DotNetProjects/QuickTest/obj/Debug/netcoreapp2.0/QuickTest.AssemblyInfo.cs
+/home/linuxoid/DotNetProjects/QuickTest/obj/Debug/netcoreapp2.0/QuickTest.dll
+/home/linuxoid/DotNetProjects/QuickTest/obj/Debug/netcoreapp2.0/QuickTest.pdb
