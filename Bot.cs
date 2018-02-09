@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Telegram.Bot;
@@ -72,6 +73,15 @@ namespace QuickTest
                 throw;
             }
         }
+
+        private async Task<Post> GetLatestPostAsync()
+        {
+            var rssReader = new RssReader();
+            var posts = await rssReader.ReadAsync();
+            var lastPost = posts.Last();
+
+            return lastPost;
+        }
         
         private async void OnBotMessageReceived(object sender, MessageEventArgs e) 
         {
@@ -85,7 +95,8 @@ namespace QuickTest
 
                     var keyboard = new Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup(
                         new Telegram.Bot.Types.InlineKeyboardButtons.InlineKeyboardButton[] {
-                            new Telegram.Bot.Types.InlineKeyboardButtons.InlineKeyboardCallbackButton("Привет", "callback")
+                            new Telegram.Bot.Types.InlineKeyboardButtons.InlineKeyboardCallbackButton("Привет", "HelloCallback"),
+                            new Telegram.Bot.Types.InlineKeyboardButtons.InlineKeyboardCallbackButton("Лента Barca", "BarceFeedCallback")
                         }
                     );
 
@@ -98,9 +109,21 @@ namespace QuickTest
         {
             var message = e.CallbackQuery.Message;
 
-            if (e.CallbackQuery.Data == "callback")
+            if (e.CallbackQuery.Data == "HelloCallback")
             {
                 await _bot.SendTextMessageAsync(message.Chat.Id, "Привет. Ты пидор! :)");
+            } else if (e.CallbackQuery.Data == "BarceFeedCallback")
+            {
+                var post = await GetLatestPostAsync();
+                var builder = new StringBuilder();
+
+                builder.Append(post.Title);
+                builder.Append(Environment.NewLine);
+                builder.Append(Environment.NewLine);
+                builder.Append(post.PostLink);
+                builder.Append(Environment.NewLine);
+                
+                await _bot.SendTextMessageAsync(message.Chat.Id, builder.ToString());
             }
         }
     }
