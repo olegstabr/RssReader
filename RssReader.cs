@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -14,10 +15,7 @@ namespace QuickTest
         private HttpClient _client = new HttpClient();
         private XmlDocument _xmlDocument = new XmlDocument();
         
-        public RssReader()
-        {
-            
-        }
+        public RssReader() { }
 
         public async Task Read()
         {
@@ -25,14 +23,18 @@ namespace QuickTest
             
             _xmlDocument.LoadXml(feed);
 
-            var xElement = XElement.Parse(feed).Descendants("item");
-            Parallel.ForEach(xElement, ParsePost);
+            var xElement = XElement.Parse(feed);
+            var posts = ParsePosts(xElement);
         }
-
-        private void ParsePost(XElement item)
+        
+        private List<Post> ParsePosts(XElement element)
         {
-//            Console.WriteLine(item);
-            var name = item.Name.LocalName;
+            var posts = element.Element("channel")
+                ?.Elements("item")
+                .Select(item => new Post(item.Element("title")?.Value, item.Element("link")?.Value,
+                    item.Element("enclosure")?.Attribute("url")?.Value)).AsParallel();
+
+            return posts?.ToList();
         }
     }
 }

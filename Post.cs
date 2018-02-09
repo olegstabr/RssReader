@@ -20,8 +20,8 @@ namespace QuickTest
         {
             StringBuilder builder = new StringBuilder();
             
-            builder.Append($"Title: \t {Title + Environment.NewLine}");
-            builder.Append($"PostLink: \t {PostLink + Environment.NewLine}");
+            builder.Append($"Title:     \t {Title + Environment.NewLine}");
+            builder.Append($"PostLink:  \t {PostLink + Environment.NewLine}");
             builder.Append($"PhotoLink: \t {PhotoLink + Environment.NewLine}");
             
             return builder.ToString();
