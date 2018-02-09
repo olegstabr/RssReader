@@ -1,2 +1,2 @@
 # RssReader
-Telegram bot for read rss from https://www.fcbarcelona.com/
+Telegram bot for read RSS from https://www.fcbarcelona.com/
