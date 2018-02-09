@@ -9,9 +9,6 @@ namespace QuickTest
         {
             var bot = new Bot();
             await bot.GetTokenFromFileAsync("/home/linuxoid/Desktop/token");
-            
-//            var rssReader = new RssReader();
-//            await rssReader.Read();
             await bot.Start();
             Console.ReadLine();
             bot.Stop();

@@ -15,9 +15,7 @@ namespace QuickTest
         private HttpClient _client = new HttpClient();
         private XmlDocument _xmlDocument = new XmlDocument();
         
-        public RssReader() { }
-
-        public async Task Read()
+        public async Task<List<Post>> ReadAsync()
         {
             var feed = await _client.GetStringAsync(RssPath);
             
@@ -25,9 +23,11 @@ namespace QuickTest
 
             var xElement = XElement.Parse(feed);
             var posts = ParsePosts(xElement);
+
+            return posts;
         }
         
-        private List<Post> ParsePosts(XElement element)
+        private static List<Post> ParsePosts(XElement element)
         {
             var posts = element.Element("channel")
                 ?.Elements("item")

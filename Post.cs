@@ -18,7 +18,7 @@ namespace QuickTest
 
         public override string ToString()
         {
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
             
             builder.Append($"Title:     \t {Title + Environment.NewLine}");
             builder.Append($"PostLink:  \t {PostLink + Environment.NewLine}");
